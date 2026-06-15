@@ -1,7 +1,3 @@
-# MS SQL & MySQL Short Topics
-![GitHub Repo Stars](https://img.shields.io/github/stars/SUBHASHSUSHIL/ms-sql-sort-topics?style=social)
-![GitHub Forks](https://img.shields.io/github/forks/SUBHASHSUSHIL/ms-sql-sort-topics?style=social)
-
 ## Description
 This repository contains **optimized SQL queries, stored procedures, indexing strategies, and performance tuning tips** for **MS SQL Server and MySQL**. It serves as a quick reference for developers and DBAs working with these databases.
 
@@ -48,9 +44,3 @@ If you have useful SQL scripts, feel free to contribute:
 3. Add your scripts and commit (`git commit -m 'Added new SQL optimization script'`)
 4. Push to your branch (`git push origin new-sql-scripts`)
 5. Create a Pull Request
-
-## License
-This repository is licensed under the **MIT License**.
-
-## Contact
-For any queries, reach out to: [Sushil Thakur](mailto:sushilthakur9792@gmail.com)

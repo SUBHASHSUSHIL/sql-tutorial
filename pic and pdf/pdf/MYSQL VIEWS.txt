@@ -1,0 +1,239 @@
+MySQL View :-
+
+A view is a database object that has no values. Its contents 
+are based on the base table. It contains rows and columns 
+similar to the real table. In MySQL, the View is a virtual 
+table created by a query by joining one or more tables. 
+
+It is operated similarly to the base table but does not 
+contain any data of its own. The View and table have one 
+main difference that the views are definitions built on top 
+of other tables . If any changes occur in the underlying table,
+the same changes reflected in the View also.
+
+MySQL allows us to create a view using Command Line:-
+
+Syntax:-
+
+Following is the syntax to create a view in MySQL:
+
+CREATE  OR REPLACE VIEW view_name AS    
+SELECT columns    
+FROM tables  [WHERE conditions];    
+
+
+Parameters:-
+
+The view syntax contains the following parameters:
+
+OR REPLACE: It is optional. It is used when a VIEW 
+already exists. If you do not specify this clause and the 
+VIEW already exists, the CREATE VIEW statement 
+will return an error.
+
+view_name: It specifies the name of the VIEW that you 
+want to create in MySQL.
+
+WHERE conditions: It is also optional. It specifies the 
+conditions that must be met for the records to be included 
+in the VIEW.
+
+MYSQL VIEW Example:-
+
+MariaDB [demo2]> create table employees(id int,ename varchar(20),
+age int,profile varchar(20),salary float,address varchar(30));
+
+MariaDB [demo2]> insert into employees values(11,'aman',23,'manager',45000,'noida');
+Query OK, 1 row affected (0.069 sec)
+
+MariaDB [demo2]> insert into employees values(22,'deepak',28,'designer',25000,'delhi');
+Query OK, 1 row affected (0.035 sec)
+
+MariaDB [demo2]> insert into employees values(33,'pankaj',20,'developer',65000,'gurgaon');
+Query OK, 1 row affected (0.049 sec)
+
+MariaDB [demo2]> insert into employees values(44,'bipin',32,'accountant',22000,'alwar');
+Query OK, 1 row affected (0.052 sec)
+
+MariaDB [demo2]> insert into employees values(55,'saroj',18,'tester',28000,'noida');
+Query OK, 1 row affected (0.050 sec)
+
+MariaDB [demo2]> select * from employees;
++------+--------+------+------------+--------+---------+
+| id   | ename  | age  | profile    | salary | address |
++------+--------+------+------------+--------+---------+
+|   11 | aman   |   23 | manager    |  45000 | noida   |
+|   22 | deepak |   28 | designer   |  25000 | delhi   |
+|   33 | pankaj |   20 | developer  |  65000 | gurgaon |
+|   44 | bipin  |   32 | accountant |  22000 | alwar   |
+|   55 | saroj  |   18 | tester     |  28000 | noida   |
++------+--------+------+------------+--------+---------+
+5 rows in set (0.000 sec)
+
+## To create View:-
+
+MariaDB [demo2]> create or replace view emp2 as select id,ename,age,profile from employees;
+Query OK, 0 rows affected (0.088 sec)
+
+## To see the created VIEW :-
+
+MariaDB [demo2]> select * from emp2;
++------+--------+------+------------+
+| id   | ename  | age  | profile    |
++------+--------+------+------------+
+|   11 | aman   |   23 | manager    |
+|   22 | deepak |   28 | designer   |
+|   33 | pankaj |   20 | developer  |
+|   44 | bipin  |   32 | accountant |
+|   55 | saroj  |   18 | tester     |
++------+--------+------+------------+
+5 rows in set (0.031 sec)
+
+## MySQL Update VIEW:-
+
+Syntax:
+
+Following is the syntax used to update the existing view in MySQL:
+
+ALTER VIEW view_name AS    
+SELECT columns    
+FROM table    
+WHERE conditions;    
+
+## Example:-
+
+MariaDB [demo2]> alter view emp2 as select id,ename,age,profile,address from employees;
+Query OK, 0 rows affected (0.054 sec)
+
+
+MariaDB [demo2]> select * from emp2;
++------+--------+------+------------+---------+
+| id   | ename  | age  | profile    | address |
++------+--------+------+------------+---------+
+|   11 | aman   |   23 | manager    | noida   |
+|   22 | deepak |   28 | designer   | delhi   |
+|   33 | pankaj |   20 | developer  | gurgaon |
+|   44 | bipin  |   32 | accountant | alwar   |
+|   55 | saroj  |   18 | tester     | noida   |
++------+--------+------+------------+---------+
+5 rows in set (0.001 sec)
+
+
+MariaDB [demo2]> insert into emp2 values(66,'vivek',26,'analyst','delhi');
+Query OK, 1 row affected (0.047 sec)
+
+MariaDB [demo2]> select * from emp2;
++------+--------+------+------------+---------+
+| id   | ename  | age  | profile    | address |
++------+--------+------+------------+---------+
+|   11 | aman   |   23 | manager    | noida   |
+|   22 | deepak |   28 | designer   | delhi   |
+|   33 | pankaj |   20 | developer  | gurgaon |
+|   44 | bipin  |   32 | accountant | alwar   |
+|   55 | saroj  |   18 | tester     | noida   |
+|   66 | vivek  |   26 | analyst    | delhi   |
++------+--------+------+------------+---------+
+6 rows in set (0.000 sec)
+
+MariaDB [demo2]> select * from employees;
++------+--------+------+------------+--------+---------+
+| id   | ename  | age  | profile    | salary | address |
++------+--------+------+------------+--------+---------+
+|   11 | aman   |   23 | manager    |  45000 | noida   |
+|   22 | deepak |   28 | designer   |  25000 | delhi   |
+|   33 | pankaj |   20 | developer  |  65000 | gurgaon |
+|   44 | bipin  |   32 | accountant |  22000 | alwar   |
+|   55 | saroj  |   18 | tester     |  28000 | noida   |
+|   66 | vivek  |   26 | analyst    |   NULL | delhi   |
++------+--------+------+------------+--------+---------+
+6 rows in set (0.000 sec)
+
+MariaDB [demo2]> delete from emp2 where id=44;
+Query OK, 1 row affected (0.068 sec)
+
+MariaDB [demo2]> select * from emp2;
++------+--------+------+-----------+---------+
+| id   | ename  | age  | profile   | address |
++------+--------+------+-----------+---------+
+|   11 | aman   |   23 | manager   | noida   |
+|   22 | deepak |   28 | designer  | delhi   |
+|   33 | pankaj |   20 | developer | gurgaon |
+|   55 | saroj  |   18 | tester    | noida   |
+|   66 | vivek  |   26 | analyst   | delhi   |
++------+--------+------+-----------+---------+
+5 rows in set (0.000 sec)
+
+MariaDB [demo2]> select * from employees;
++------+--------+------+-----------+--------+---------+
+| id   | ename  | age  | profile   | salary | address |
++------+--------+------+-----------+--------+---------+
+|   11 | aman   |   23 | manager   |  45000 | noida   |
+|   22 | deepak |   28 | designer  |  25000 | delhi   |
+|   33 | pankaj |   20 | developer |  65000 | gurgaon |
+|   55 | saroj  |   18 | tester    |  28000 | noida   |
+|   66 | vivek  |   26 | analyst   |   NULL | delhi   |
++------+--------+------+-----------+--------+---------+
+5 rows in set (0.000 sec)
+
+
+MariaDB [demo2]> update employees set ename='raj' where id=66;
+Query OK, 1 row affected (0.047 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [demo2]> select * from employees;
++------+--------+------+-----------+--------+---------+
+| id   | ename  | age  | profile   | salary | address |
++------+--------+------+-----------+--------+---------+
+|   11 | aman   |   23 | manager   |  45000 | noida   |
+|   22 | deepak |   28 | designer  |  25000 | delhi   |
+|   33 | pankaj |   20 | developer |  65000 | gurgaon |
+|   55 | saroj  |   18 | tester    |  28000 | noida   |
+|   66 | raj    |   26 | analyst   |   NULL | delhi   |
++------+--------+------+-----------+--------+---------+
+6 rows in set (0.000 sec)
+
+MariaDB [demo2]> select * from emp2;
++------+--------+------+-----------+---------+
+| id   | ename  | age  | profile   | address |
++------+--------+------+-----------+---------+
+|   11 | aman   |   23 | manager   | noida   |
+|   22 | deepak |   28 | designer  | delhi   |
+|   33 | pankaj |   20 | developer | gurgaon |
+|   55 | saroj  |   18 | tester    | noida   |
+|   66 | raj    |   26 | analyst   | delhi   |
++------+--------+------+-----------+---------+
+6 rows in set (0.000 sec)
+## MySQL Drop VIEW:-
+
+We can drop the existing VIEW by using the 
+DROP VIEW statement.
+
+Syntax:
+
+DROP VIEW view_name;    
+
+
+MariaDB [demo2]> drop view emp2;
+Query OK, 0 rows affected (0.001 sec)
+
+MariaDB [demo2]> select * from emp2;
+ERROR 1146 (42S02): Table 'demo2.emp2' doesn't exist
+
+MariaDB [demo2]> select * from employees;
++------+--------+------+-----------+--------+---------+
+| id   | ename  | age  | profile   | salary | address |
++------+--------+------+-----------+--------+---------+
+|   11 | aman   |   23 | manager   |  45000 | noida   |
+|   22 | deepak |   28 | designer  |  25000 | delhi   |
+|   33 | pankaj |   20 | developer |  65000 | gurgaon |
+|   55 | saroj  |   18 | tester    |  28000 | noida   |
+|   66 | vivek  |   26 | analyst   |   NULL | delhi   |
++------+--------+------+-----------+--------+---------+
+5 rows in set (0.000 sec)
+
+
+>> How to See All Views Lists :-
+
+MariaDB [demo2]>SHOW FULL TABLES;
+
+MariaDB [demo2]>SHOW FULL TABLES WHERE Table_Type LIKE 'VIEW';

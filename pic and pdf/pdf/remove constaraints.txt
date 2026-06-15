@@ -1,0 +1,12 @@
+remove constaraints;
+
+alter table emp drop primary key;(primary key)
+alter table emp drop primary key;( composit key)
+
+alter table emp order foreing key order_ibfk_1;( foreing key)
+alter table emp modify name varchar(23) null;(not null)
+
+alter table emp drop index id;( unique key)
+
+
+alter table emp  alter city drop default;( default key) google search for doubts clear 

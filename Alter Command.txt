@@ -38,5 +38,3 @@ ex:- alter table Employee alter column Name nvarchar(max)  Null;
 
 10.Delete in Not Null And Null:-
 - delete from TableName where Id = 1;
-
-11.
