@@ -1,3 +1,9 @@
+Step - 1
+open SQL-Server --> right click server then go to properties --> then select security --> select SQL Server and windows Authentication mode, Both failed and Sucessfully logins and check enable server proxy account --> and fill proxy username sa and password xxxx then OK
+
+
+---------------------------------------
+Step - 2
 ALTER LOGIN sa ENABLE;
 GO
 
@@ -7,6 +13,15 @@ GO
 
 
 ---------------------------------------
+Step - 3
 SELECT name, is_disabled
 FROM sys.sql_logins
 WHERE name = 'sa';
+
+
+--------------------------------------
+Step - 4 
+Then Restart SQL Server
+- Window + R --> type this (services.msc)  open services then find sql server (sql express) right click then restart
+
+All Process Done then check authentication and use...
