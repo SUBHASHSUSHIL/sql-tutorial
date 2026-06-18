@@ -44,3 +44,5 @@ If you have useful SQL scripts, feel free to contribute:
 3. Add your scripts and commit (`git commit -m 'Added new SQL optimization script'`)
 4. Push to your branch (`git push origin new-sql-scripts`)
 5. Create a Pull Request
+
+## Setup
